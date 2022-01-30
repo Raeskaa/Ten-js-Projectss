@@ -1,0 +1,15 @@
+@import url();
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #000;
+    justify-content: center;
+    text-align: center;
+
+}
