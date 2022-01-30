@@ -17,4 +17,4 @@ const countDown = () => {
     document.querySelector("#Seconds").innerHTML = Math.floor((time % minutes) / seconds);
 }
 countDown();
-setInterval(countDown, 1000);
+setInterval(countDown, 1000); 

@@ -12,8 +12,28 @@
 </head>
 
 <body>
-    <div class="Title">Hi Boys</div>
+    <div class="themes">
+        <button onclick="theme_1()" class="them color" id="themee_1">Theme A </button>
+        <button onclick="theme_2()" class="them color" id="themee_2">Theme B</button>
+        <button onclick="theme_3()" class="them color" id="themee_3">Theme C</button>
+    </div>
+    <div class="quiz-container" id="quiz_container">
+        <div class="quiz-header">
+            <h2 id="question">Question Text</h2>
+            <ul>
+                <li><input type="radio" id="a" name="answer" value="option A"><label for="a" id="opt-a">Question</label>
+                </li>
+                <li><input type="radio" id="b" name="answer" value="option B"><label for="b" id="opt-b">Question</label>
+                </li>
+                <li><input type="radio" id="c" name="answer" value="option C"><label for="c" id="opt-c">Question</label>
+                </li>
+                <li><input type="radio" id="d" name="answer" value="option D"><label for="d" id="opt-d">Question</label>
+                </li>
+            </ul>
+        </div>
+        <button id="submit" onclick="next()">Submit</button>
+    </div>
 </body>
-<script src="script.js"></script>
+<script src=" script.js"></script>
 
 </html>
