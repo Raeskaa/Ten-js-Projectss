@@ -57,7 +57,6 @@ const submitBtn = document.getElementById('submit')
 let currentQuestion = 0;
 
 function loadQuiz() {
-    console.log(quizData[currentQuestion].question)
     questions.innerHTML = quizData[currentQuestion].question;
     opt_a.innerHTML = quizData[currentQuestion].a;
     opt_b.innerHTML = quizData[currentQuestion].b;
@@ -66,35 +65,25 @@ function loadQuiz() {
 }
 
 loadQuiz();
-submitBtn.addEventListener("click", checkAnswer = () => {
-    currentQuestion++;
-    if (currentQuestion <= quizData.length) {
-        loadQuiz();
+function atLeastOneRadio() {
+    return ($('input[type=radio]:checked').size() > 0);
+}
+function noRadio() {
+    return ($('input[type=radio]:checked').size() = 0);
+}
+
+if (currentQuestion <= quizData.length - 1) {
+    if (currentQuestion == quizData.length - 1) {
+        submitBtn.innerHTML = 'Finish';
     }
     else {
-        alert('Quiz Over');
-        console.log(endString);
-    }
-})
-
-const btn = document.querySelector('#submit');
-const radioButtons = document.querySelectorAll('input[name="answer"]');
-btn.addEventListener("click", () => {
-    let selectedAnswer = '';
-    for (const radioButton of radioButtons) {
-        if (radioButton.checked) {
-            selectedAnswer = radioButton.value;
+        if (atLeastOneRadio() && (submitBtn.onclick == true)) {
+            currentQuestion++;
+            loadQuiz();
+        }
+        else if (noRadio() && (submitBtn.onclick == true)) {
+            alert('Please select an option');
             break;
         }
     }
-    if (selectedAnswer) {
-        endString.push(selectedAnswer);
-        currentQuestion++;
-        loadQuiz();
-    }
-    else {
-        alert("Please select an option");
-    }
-});
-
-var endString = [];
+}
