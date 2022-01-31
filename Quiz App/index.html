@@ -17,22 +17,29 @@
         <button onclick="theme_2()" class="them color" id="themee_2">Theme B</button>
         <button onclick="theme_3()" class="them color" id="themee_3">Theme C</button>
     </div>
-    <div class="quiz-container" id="quiz_container">
+    <div class="quiz-container" id="quiz">
         <div class="quiz-header">
-            <h2 id="question">Question Text</h2>
+            <h2 id="question">Question text</h2>
             <ul>
-                <li><input type="radio" id="a" name="answer" value="option A"><label for="a" id="opt-a">Question</label>
+                <li>
+                    <input type="radio" id="a" name="answer" class="answer" />
+                    <label id="a_text" for="a">Question</label>
                 </li>
-                <li><input type="radio" id="b" name="answer" value="option B"><label for="b" id="opt-b">Question</label>
+                <li>
+                    <input type="radio" id="b" name="answer" class="answer" />
+                    <label id="b_text" for="b">Question</label>
                 </li>
-                <li><input type="radio" id="c" name="answer" value="option C"><label for="c" id="opt-c">Question</label>
+                <li>
+                    <input type="radio" id="c" name="answer" class="answer" />
+                    <label id="c_text" for="c">Question</label>
                 </li>
-                <li><input type="radio" id="d" name="answer" value="option D"><label for="d" id="opt-d">Question</label>
+                <li>
+                    <input type="radio" id="d" name="answer" class="answer" />
+                    <label id="d_text" for="d">Question</label>
                 </li>
             </ul>
         </div>
-        <button id="submit" onclick="next()">Submit</button>
-    </div>
+        <button id="submit">Submit</button>
 </body>
 <script src=" script.js"></script>
 

@@ -19,7 +19,7 @@ const quizData = [
         b: 'Crush',
         c: 'Flying Chappal',
         d: 'Dinner',
-        correct: 'Crush'
+        correct: 'b'
     },
     {
         question: "What can one catch that is not thrown?",
@@ -27,15 +27,15 @@ const quizData = [
         b: 'A bird',
         c: 'A cat',
         d: 'A cold',
-        correct: 'A cold'
+        correct: 'd'
     },
     {
         question: "How can a girl go 25 days without sleep?",
         a: 'uk what I mean by this',
         b: 'She sleeps at night',
         c: 'She is a Witch',
-        d: 'She is sleeping somewhere else, where you cant see',
-        correct: 'She sleeps at night'
+        d: 'Boost is the secret of her energy',
+        correct: 'b'
     },
     {
         question: "How do you make the number one disappear?",
@@ -43,47 +43,72 @@ const quizData = [
         b: 'Add 1',
         c: 'Add Girl',
         d: 'Eraser',
-        correct: 'Add G'
-    }
-]
+        correct: 'a'
+    },
+];
 
-const questions = document.getElementById('question')
-const opt_a = document.getElementById('opt-a')
-const opt_b = document.getElementById('opt-b')
-const opt_c = document.getElementById('opt-c')
-const opt_d = document.getElementById('opt-d')
-const submitBtn = document.getElementById('submit')
+const quiz = document.getElementById("quiz");
+const answerEls = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitBtn = document.getElementById("submit");
 
-let currentQuestion = 0;
-
-function loadQuiz() {
-    questions.innerHTML = quizData[currentQuestion].question;
-    opt_a.innerHTML = quizData[currentQuestion].a;
-    opt_b.innerHTML = quizData[currentQuestion].b;
-    opt_c.innerHTML = quizData[currentQuestion].c;
-    opt_d.innerHTML = quizData[currentQuestion].d;
-}
+let currentQuiz = 0;
+let score = 0;
 
 loadQuiz();
-function atLeastOneRadio() {
-    return ($('input[type=radio]:checked').size() > 0);
-}
-function noRadio() {
-    return ($('input[type=radio]:checked').size() = 0);
+
+function loadQuiz() {
+    deselectAnswers();
+
+    const currentQuizData = quizData[currentQuiz];
+
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
 }
 
-if (currentQuestion <= quizData.length - 1) {
-    if (currentQuestion == quizData.length - 1) {
-        submitBtn.innerHTML = 'Finish';
-    }
-    else {
-        if (atLeastOneRadio() && (submitBtn.onclick == true)) {
-            currentQuestion++;
-            loadQuiz();
+function getSelected() {
+    let answer = undefined;
+
+    answerEls.forEach((answerEl) => {
+        if (answerEl.checked) {
+            answer = answerEl.id;
         }
-        else if (noRadio() && (submitBtn.onclick == true)) {
-            alert('Please select an option');
-            break;
-        }
-    }
+    });
+
+    return answer;
 }
+
+function deselectAnswers() {
+    answerEls.forEach((answerEl) => {
+        answerEl.checked = false;
+    });
+}
+
+submitBtn.addEventListener("click", () => {
+    // check to see the answer
+    const answer = getSelected();
+
+    if (answer) {
+        if (answer === quizData[currentQuiz].correct) {
+            score++;
+        }
+
+        currentQuiz++;
+        if (currentQuiz < quizData.length) {
+            loadQuiz();
+        } else {
+            quiz.innerHTML = `
+                <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+                
+                <button onclick="location.reload()">Reload</button>
+            `;
+        }
+    }
+});
